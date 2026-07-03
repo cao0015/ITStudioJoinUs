@@ -3,6 +3,7 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { ArrowLeft, ArrowRight, Check, Eye, EyeOff, LogOut, RotateCcw } from 'lucide-vue-next'
 import SiteHeader from '../components/SiteHeader.vue'
 import DynamicForm from '../components/DynamicForm.vue'
+import CampaignSelect from '../components/CampaignSelect.vue'
 import { ApiError, api, post } from '../api'
 import type { ApplicationDetail, Campaign, FormField } from '../types'
 
@@ -47,7 +48,7 @@ function back(){error.value='';notice.value='';phase.value=phase.value==='form'&
         <div v-if="phase==='lookup'" class="portal-content compact">
           <p class="step-no">STEP 00 / ENTRY</p><h2>报名，或查询进度。</h2><p class="lead">选择招新批次，输入学号。系统会带你去正确的下一步。</p>
           <form @submit.prevent="lookup">
-            <label>招新批次<select v-model="selectedId" required><option v-for="c in campaigns" :key="c.id" :value="c.id">{{ c.name }} · {{ accepting(c)?'开放中':'已结束' }}</option></select></label>
+            <label>招新批次<CampaignSelect v-model="selectedId" :campaigns="campaigns" /></label>
             <label>学号<input v-model.trim="studentId" required minlength="4" maxlength="32" autocomplete="username" placeholder="输入你的学号"/></label>
             <button class="primary-btn" :disabled="loading||!campaigns.length">{{ loading?'查询中…':'继续' }} <ArrowRight/></button>
           </form><p v-if="!campaigns.length" class="empty-hint">暂无公开招新批次，请稍后再来。</p>

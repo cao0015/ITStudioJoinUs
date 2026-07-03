@@ -5,6 +5,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-vue-next'
 import SiteHeader from '../components/SiteHeader.vue'
 import DecryptedText from '../components/vue-bits/DecryptedText.vue'
 import GridScan from '../components/vue-bits/GridScan.vue'
+
 import { api } from '../api'
 import type { SiteContent } from '../types'
 
@@ -60,8 +61,12 @@ onBeforeUnmount(()=>{
         <div class="hero-meta hero-line"><span>{{ content.heroEyebrow }}</span><span>31.2304° N / 121.4737° E</span></div>
         <div class="hero-title-wrap">
           <p class="hero-index hero-line">/ RECRUIT<br/>2026</p>
-          <h1 class="hero-title hero-line"><DecryptedText :text="content.heroTitle"/></h1>
-          <p class="hero-cn hero-line">{{ content.heroSubtitle }}</p>
+          <h1 class="hero-title hero-line">
+                <span class="hero-word"><DecryptedText :text="content.heroTitle.split(' ')[0]" :speed="45" :max-iterations="8" :sequential="true" reveal-direction="start" /></span>
+                <span class="hero-word"><DecryptedText :text="content.heroTitle.split(' ')[1]" :speed="45" :max-iterations="8" :sequential="true" reveal-direction="start" /></span>
+                <span class="hero-word"><DecryptedText :text="content.heroTitle.split(' ')[2]" :speed="45" :max-iterations="8" :sequential="true" reveal-direction="start" /></span>
+              </h1>
+          <p class="hero-cn hero-line"><DecryptedText :text="content.heroSubtitle" :speed="45" :max-iterations="2" :sequential="true" reveal-direction="start" /></p>
         </div>
         <div class="hero-footer hero-line">
           <a href="#about" class="scroll-cue"><ArrowDown/> SCROLL TO EXPLORE</a>
