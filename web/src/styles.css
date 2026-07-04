@@ -29,6 +29,17 @@ html.page-snap{scroll-snap-type:y mandatory;overscroll-behavior-y:none}
 .public-shell .section-pad{padding:clamp(82px,11vh,112px) 6vw clamp(20px,3.5vh,38px)}
 .public-shell .manifesto{display:flex;flex-direction:column;justify-content:space-between}
 .public-shell .manifesto-grid{margin-top:clamp(30px,8vh,90px)}
+.public-shell .manifesto-layout{display:flex;align-items:center;justify-content:center;gap:clamp(30px,4vw,60px);margin-top:clamp(20px,6vh,80px)}
+.public-shell .manifesto-text{flex:0 0 auto;max-width:340px}
+.public-shell .manifesto-title{font-size:clamp(28px,4vw,56px);font-weight:900;letter-spacing:-.03em;margin:0 0 clamp(16px,3vh,36px);line-height:1.1}
+.public-shell .manifesto-quote{font-size:clamp(15px,1.6vw,19px);line-height:2;color:var(--muted)}
+.public-shell .manifesto-quote p{margin:0 0 clamp(8px,1.5vh,14px)}
+.public-shell .manifesto-tagline{color:var(--ink)!important;font-weight:600}
+.public-shell .manifesto-arrow{flex-shrink:0;width:clamp(60px,8vw,120px);margin:0 -8px}
+.public-shell .manifesto-arrow svg{width:100%;height:auto}
+.public-shell .manifesto-stack{flex-shrink:0;width:clamp(320px,42vw,480px);height:clamp(320px,42vw,480px)}
+.public-shell .manifesto-stack .stack-solid-card,.public-shell .manifesto-stack .stack-card-img{border-radius:16px;border:5px solid var(--acid)}
+.public-shell .manifesto-stack .stack-card-img{width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
 .public-shell .manifesto-copy .vertical-rule{height:clamp(40px,7vh,70px);margin:clamp(18px,3vh,32px) 0 14px}
 .public-shell .directions{padding-top:clamp(82px,10vh,105px)}
 .public-shell .direction-list{margin-top:clamp(18px,3.5vh,38px)}
@@ -57,6 +68,11 @@ html.page-snap{scroll-snap-type:y mandatory;overscroll-behavior-y:none}
   .public-shell .section-pad{padding:76px 20px 16px}
   .public-shell .section-kicker{padding-bottom:11px}
   .public-shell .manifesto-grid{margin-top:5vh}
+  .public-shell .manifesto-layout{flex-direction:column-reverse;gap:2vh;margin-top:2vh}
+  .public-shell .manifesto-arrow{display:none}
+  .public-shell .manifesto-title{font-size:26px;margin-bottom:8px}
+  .public-shell .manifesto-quote{font-size:14px;line-height:1.8}
+  .public-shell .manifesto-stack{width:min(320px,80vw);height:min(320px,80vw)}
   .public-shell .manifesto-copy{margin-top:2vh;font-size:clamp(13px,2vh,16px);line-height:1.65}
   .public-shell .manifesto-copy .vertical-rule{height:4vh;margin:2vh 0 9px}
   .public-shell .direction-list{margin-top:2vh}

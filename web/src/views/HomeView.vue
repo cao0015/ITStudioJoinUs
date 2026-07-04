@@ -5,12 +5,21 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-vue-next'
 import SiteHeader from '../components/SiteHeader.vue'
 import DecryptedText from '../components/vue-bits/DecryptedText.vue'
 import GridScan from '../components/vue-bits/GridScan.vue'
+import Stack from '../components/vue-bits/Stack.vue'
 
 import { api } from '../api'
 import type { SiteContent } from '../types'
 
 const content = ref<SiteContent | null>(null)
 const splashReady = ref(!!(window as any).__splashDone)
+const stackCards = [
+  { id: 1, img: '/image/IMG_20260419_182152..webp' },
+  { id: 2, img: '/image/IMG_20260420_114312..webp' },
+  { id: 3, img: '/image/IMG_20260420_114456..webp' },
+  { id: 4, img: '/image/IMG_20260420_131022..webp' },
+  { id: 5, img: '/image/IMG_20260420_192203..webp' },
+  { id: 6, img: '/image/IMG_20260420_192226..webp' }
+]
 let observer: IntersectionObserver | undefined
 let wheelLocked = false
 let wheelTimer: number | undefined
@@ -84,9 +93,57 @@ onBeforeUnmount(()=>{
 
       <section id="about" class="manifesto section-pad">
         <div class="section-kicker reveal"><span>001</span><span>OUR MANIFESTO</span></div>
-        <div class="manifesto-grid">
-          <h2 class="display-heading reveal">{{ content.manifestoTitle }}</h2>
-          <div class="manifesto-copy reveal"><p>{{ content.manifestoBody }}</p><span class="vertical-rule"/><small>IDEA → PROTOTYPE → SHIP</small></div>
+        <div class="manifesto-layout reveal">
+          <div class="manifesto-text">
+            <h2 class="manifesto-title">工作环境一览</h2>
+            <div class="manifesto-quote">
+              <p>一个人可以走很快，<br/>一群人才能走很远。</p>
+              <p>每一行代码都是成长的印记，<br/>每一个项目都是团队的勋章。</p>
+              <p class="manifesto-tagline">在这里，把想法编译成现实。</p>
+            </div>
+          </div>
+          <div class="manifesto-arrow" aria-hidden="true">
+            <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 40 Q22 34 36 40 Q52 46 66 38 Q78 32 90 40 Q100 46 108 40"
+                    stroke="var(--acid)" stroke-width="3" stroke-linecap="round" fill="none"
+                    stroke-dasharray="70 3 8 2 12 4" />
+              <path d="M84 22 Q90 12 96 18"
+                    stroke="var(--acid)" stroke-width="3" stroke-linecap="round" fill="none" />
+              <path d="M100 36 Q108 30 112 34"
+                    stroke="var(--acid)" stroke-width="3" stroke-linecap="round" fill="none" />
+              <path d="M94 42 Q100 48 96 56"
+                    stroke="var(--acid)" stroke-width="3" stroke-linecap="round" fill="none" />
+              <path d="M84 20 Q80 26 78 32"
+                    stroke="var(--acid)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              <path d="M104 32 Q106 26 108 28"
+                    stroke="var(--acid)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+            </svg>
+          </div>
+          <div class="manifesto-stack">
+            <Stack
+              :cards-data="stackCards"
+              :random-rotation="true"
+              :sensitivity="180"
+              :send-to-back-on-click="true"
+              :autoplay="true"
+              :autoplay-delay="2500"
+              :pause-on-hover="true"
+              :max-rotation="25"
+            >
+              <template #default="{ card, index }">
+                <img v-if="card.img" :src="card.img" class="stack-card-img" draggable="false" />
+                <div
+                  v-else
+                  class="stack-solid-card"
+                  :style="{
+                    background: ['#c5e801','#1a1a2e','#16213e','#0f3460','#e94560'][index % 5],
+                    width: '100%',
+                    height: '100%'
+                  }"
+                />
+              </template>
+            </Stack>
+          </div>
         </div>
       </section>
 
